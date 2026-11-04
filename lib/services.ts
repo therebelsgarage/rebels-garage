@@ -172,7 +172,7 @@ export const services: Service[] = [
       {
         heading: "Custom paint and full color changes",
         paragraphs: [
-          "Want something different? We do custom paint jobs and complete color changes, like the BMW X6 on our home page that went from factory white to a custom teal metallic. We also take on restoration paint work for classic and collector vehicles.",
+          "Want something different? We do custom paint jobs and complete color changes, like the BMW X6 in our gallery that went from factory white to a custom teal metallic. We also take on restoration paint work for classic and collector vehicles.",
         ],
       },
       {
