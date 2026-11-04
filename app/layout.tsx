@@ -1,14 +1,23 @@
 import type React from "react"
+import type { Metadata } from "next"
 import "@/app/globals.css"
 import { Inter } from "next/font/google"
+import { localBusinessSchema, site } from "@/lib/site"
 
 const inter = Inter({ subsets: ["latin"] })
 
-export const metadata = {
-  title: "The Rebels Garage - Expert Vehicle Bodywork & Repairs",
+export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
+  title: "The Rebels Garage | Auto Collision Repair & Bodywork in Las Vegas",
   description:
-    "Expert bodywork and repairs for cars, UTVs, box trucks, RVs, Can-Ams, and RZRs. From dents to full collision repairs, we ensure top-quality service.",
-    generator: 'v0.app'
+    "Las Vegas auto body and collision repair for cars, UTVs, box trucks, RVs, Can-Ams, and RZRs. Free estimates, free towing with repairs, all insurance accepted.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    siteName: site.name,
+    locale: "en_US",
+    type: "website",
+    images: ["/images/rebels-garage-auto-collision-repair-entrance.webp"],
+  },
 }
 
 export default function RootLayout({
@@ -19,6 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-background">
       <body className={inter.className}>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema()) }} />
         {children}
       </body>
     </html>
