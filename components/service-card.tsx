@@ -1,13 +1,16 @@
 import { Car, PenToolIcon as Tool, PaintBucket, Truck, CarIcon as Jeep, Ruler } from "lucide-react"
+import Link from "next/link"
+import { ArrowRight } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 interface ServiceCardProps {
   title: string
   description: string
   icon: "car" | "tool" | "paintBucket" | "truck" | "jeep" | "ruler"
+  href?: string
 }
 
-export default function ServiceCard({ title, description, icon }: ServiceCardProps) {
+export default function ServiceCard({ title, description, icon, href }: ServiceCardProps) {
   const IconComponent = () => {
     switch (icon) {
       case "car":
@@ -27,8 +30,8 @@ export default function ServiceCard({ title, description, icon }: ServiceCardPro
     }
   }
 
-  return (
-    <Card className="transition-all hover:shadow-md">
+  const card = (
+    <Card className="h-full transition-all hover:shadow-md">
       <CardHeader className="pb-2">
         <div className="mb-4">
           <IconComponent />
@@ -37,7 +40,14 @@ export default function ServiceCard({ title, description, icon }: ServiceCardPro
       </CardHeader>
       <CardContent>
         <p className="text-muted-foreground">{description}</p>
+        {href && (
+          <span className="mt-4 inline-flex items-center text-sm font-medium text-primary">
+            Learn more <ArrowRight className="ml-1 h-4 w-4" />
+          </span>
+        )}
       </CardContent>
     </Card>
   )
+
+  return href ? <Link href={href} className="block h-full">{card}</Link> : card
 }
